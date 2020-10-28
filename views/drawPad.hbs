@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>This Persons Room</title>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="crossorigin="anonymous"
+            />
+        <link rel="stylesheet" href="/css/pad.css">
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <div class="tool-options">
+                    <div class="pencil-tools" id="pencil-tool">
+                        <div class="predefined-size">
+                            <button class="size px15"></button>
+                            <button class="size px25"></button>
+                            <button class="size px35"></button>
+                            <button class="size px45"></button>
+                            <button class="size px55"></button>
+                        </div>
+                        <div class="size-input-container">
+                            <input type="number" class="size-ip" id="size-ip"
+                                placeholder="Enter Pencil Size">
+                            <button class="btn-circular add-size">Add Size</button>
+                        </div>
+                    </div>
+                    <div class="text-tools" id="text-tool">
+                        <div class="font-format">
+                            <select id="font-family" class="font-family">
+                                <option value="Raleway" selected>Raleway</option>
+                                <option value="Times New Roman">Times New Roman</option>
+                                <option value="Times New Roman">Roboto</option>
+                                <option value="Times New Roman">Arial</option>
+                                <option value="Times New Roman">Billabong</option>
+                            </select>
+                            <select class="font-size" id="font-size">
+                                <option value="12" selected>12</option>
+                                <option value="18">16</option>
+                                <option value="22">22</option>
+                                <option value="36">36</option>
+                                <option value="48">48</option>
+                            </select>
+                        </div>
+                        <div class="text-style">
+                            <div class="btn-group-font-style">
+                                <button class="btn-text-format btn-bold">B</button>
+                                <button class="btn-text-format btn-italic">I</button>
+                                <button class="btn-text-format btn-underline">U</button>
+                            </div>
+                            <div class="btn-group-font-style">
+                                <button class="btn-text-format btn-left-align"><i
+                                        class="fas fa-align-left"></i></button>
+                                <button class="btn-text-format
+                                    btn-center-align"><i
+                                        class="fas fa-align-center"></i></button>
+                                <button class="btn-text-format btn-right-align"><i
+                                        class="fas fa-align-right"></i></button>
+                                <button class="btn-text-format
+                                    btn-justify-align"><i
+                                        class="fas fa-align-justify"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="meeting-options">
+                    <div class="btn-group">
+                        <button class="btn-icon-nav" id="add-user">
+                            <i class="fas fa-user-plus"></i>
+                        </button>
+                        <button class="btn-icon-nav" id="all-users">
+                            <i class="fas fa-users"></i>
+                        </button>
+                        <button class="btn-icon-nav" id="chat">
+                            <i class="fas fa-comment-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <section class="artboard-details">
+                <div class="artboard-detail-header">
+                    <h1>Artboard Details</h1>
+                    <button class="btn-close-sidebar">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <ul class="artboard-details-tab-list">
+                    <button class="tab-name" id="user-tab-btn">
+                        <i class="fas fa-users"></i>
+                        <p>Users</p>
+                    </button>
+                    <button class="tab-name" id="chat-tab-btn">
+                        <i class="fas fa-comment-alt"></i>
+                        <p>Chat</p>
+                    </button>
+                </ul>
+                <div class="tab-content-container">
+                    <div class="tab-content tab-content-scale-0" id="users-tab">
+                        <h2>Host</h2>
+                        <li class="users-item">
+                            <div class="user-img-container">
+                                <img src="https://source.unsplash.com/250x250"
+                                    class="user-img">
+                            </div>
+                            <p class="user-name">
+                                Suparth Narayan Ghimire
+                            </p>
+                        </li>
+                        <h2>
+                            Users
+                        </h2>
+                        <ul class="users-list">
+                            <li class="users-item">
+                                <div class="user-img-container">
+                                    <img src="https://source.unsplash.com/50x50"
+                                        class="user-img">
+                                </div>
+                                <p class="user-name">
+                                    Suparth Narayan Ghimire
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content tab-content-scale-0" id="chat-tab">
+                        <ul class="chat-list">
+                            <li class="chat-item">
+                                <h4 class="chat-username">
+                                    Suparth Narayan Ghimire
+                                </h4>
+                                <p class="chat-text">
+                                    Lorem ipsum, dolor sit amet consectetur
+                                    adipisicing elit. Dolor, perferendis.
+                                </p>
+                            </li>
+
+                        </ul>
+                        <form class="chat-input-container" id="chat-form">
+                            <label for="chat-input">
+                                Your Message
+                            </label>
+                            <div class="chat-inputs">
+                                <input type="text" id="chat-input"
+                                    class="chat-input">
+                                <button class="btn-send">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </header>
+        <aside>
+            <ul class="tool-list">
+                <li class="tool-item">
+                    <input type="radio" class="tool-checked d-none"
+                        name="tool-radio" id="tool-pencil" checked>
+                    <label for="tool-pencil" class="tool-label">
+                        <div class="icon">
+                            <i class="fas fa-pencil-alt"></i>
+                        </div>
+                        <p class="tool-name">
+                            Pencil
+                        </p>
+                    </label>
+                </li>
+                <li class="tool-item">
+                    <input type="radio" class="tool-checked d-none"
+                        name="tool-radio" id="tool-eraser">
+                    <label for="tool-eraser" class="tool-label">
+                        <i class="fas fa-eraser"></i>
+                        <p class="tool-name">
+                            Eraser
+                        </p>
+                    </label>
+                </li>
+                <li class="tool-item">
+                    <input type="color" class="tool-color" id="tool-palette">
+                    <label for="tool-palette" class="tool-label">
+                        <i class="fas fa-palette"></i>
+                        <p class="tool-name">
+                            Color
+                        </p>
+                    </label>
+                </li>
+                <li class="tool-item">
+                    <input type="radio" class="tool-checked shapes d-none"
+                        name="tool-radio" id="tool-shapes">
+                    <label for="tool-shapes" class="tool-label">
+                        <i class="fas fa-shapes"></i>
+                        <p class="tool-name">
+                            Shapes
+                        </p>
+                    </label>
+                    <div class="shapes-container">
+                        <ul class="shapes-list">
+                            <input class="d-none shape-checked" type="radio"
+                                name="shape-radio" id="shape-line">
+                            <label class="shape-item" id="shape-line"
+                                for="shape-line">
+                                <i class="shape-icon fas fa-ruler-horizontal"></i>
+                                <p class="shape-name">Straight Line</p>
+                            </label>
+                            <input class="d-none shape-checked" type="radio"
+                                name="shape-radio" id="shape-rectangle">
+                            <label class="shape-item" id="shape-rectangle"
+                                for="shape-rectangle">
+                                <i class="shape-icon fas fa-square"></i>
+                                <p class="shape-name">Rectangle</p>
+                            </label>
+                            <input class="d-none shape-checked" type="radio"
+                                name="shape-radio" id="shape-circle">
+                            <label class="shape-item" id="shape-circle"
+                                for="shape-circle">
+                                <i class="shape-icon fas fa-circle"></i>
+                                <p class="shape-name">Circle</p>
+                            </label>
+                            <input class="d-none shape-checked" type="radio"
+                                name="shape-radio" id="shape-triangle">
+                            <label class="shape-item" id="shape-triangle"
+                                for="shape-triangle">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="25" height="25" viewBox="0 0 25 25">
+                                    <path id="Polygon_1" data-name="Polygon 1"
+                                        d="M10.711,3.578a2,2,0,0,1,3.578,0l9.264,18.528A2,2,0,0,1,21.764,25H3.236a2,2,0,0,1-1.789-2.894Z"
+                                        fill="#2a2a2a" />
+                                    </svg>
+                                    <p class="shape-name">Triangle</p>
+                                </label>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="tool-item" id="code-segment-item">
+                        <input type="radio" class="tool-checked d-none"
+                            name="tool-radio" id="tool-code-segment">
+                        <label for="tool-code-segment" class="tool-label">
+                            <i class="fas fa-sticky-note"></i>
+                            <p class="tool-name">
+                                Code Segment
+                            </p>
+                        </label>
+                    </li>
+                    <li class="tool-item" id="">
+                        <input type="radio" class="tool-checked d-none"
+                            name="tool-radio" id="tool-font">
+                        <label for="tool-font" class="tool-label">
+                            <i class="fas fa-font"></i>
+                            <p class="tool-name">
+                                Text
+                            </p>
+                        </label>
+                    </li>
+                </ul>
+            </aside>
+            <main>
+                <div class="main-btn-group">
+                    <button class="canvas-btn" id="clear-canvas">
+                        Clear Canvas
+                    </button>
+                    <div>
+                        <input type="color" id="canvas-bg" class="tool-color">
+                        <label for="canvas-bg" class="canvas-btn"
+                            id="canvas-bg-btn">
+                            <i class="fas fa-palette"></i>
+                            Change Background Color
+                        </label></div>
+
+                </div>
+                <canvas id="canvas"></canvas>
+            </main>
+            <div class="invite-overlay vb-h">
+                <div class="overlay-container">
+                    <section class="overlay-header">
+                        <h2 class="overlay-title">
+                            Invite Your Crew
+                        </h2>
+                        <button class="btn-close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </section>
+                    <section class="overlay-content">
+                        <h4 class="overlay-content-header">
+                            Your Room Code
+                        </h4>
+                        <div class="room-code-container">
+                            <span class="room-code-text">suparth-132423432</span>
+                            <button id="copy" class="btn-cpy">
+                                <i class="fas fa-copy"></i>
+                                Copy
+                            </button>
+                        </div>
+                    </section>
+                    <section class="overlay-footer">
+                        <h3 class="overlay-title">
+                            What Do I Do?
+                        </h3>
+                        <p class="overlay-footer-text">
+                            Send your Crew this code and tell them to join to
+                            your room! Yep! That simple!!!
+                        </p>
+                    </section>
+                </div>
+            </div>
+            <div class="user-room-info">
+                <ul class="user-info-room-list">
+
+                </ul>
+            </div>
+        </body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.4/qs.min.js"
+            integrity="sha512-BHtomM5XDcUy7tDNcrcX1Eh0RogdWiMdXl3wJcKB3PFekXb3l5aDzymaTher61u6vEZySnoC/SAj2Y/p918Y3w=="crossorigin="anonymous"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/socket.js"></script>
+        <script src="/js/ui_interaction.js"></script>
+        <script type="module" src="/js/canvas.js"></script>
+
+    </html>

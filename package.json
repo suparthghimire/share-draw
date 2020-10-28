@@ -1,0 +1,24 @@
+{
+    "name": "drawpad",
+    "version": "1.0.0",
+    "description": "A Web app where Host and Clients can loom at drawings in realtime",
+    "main": "index.js",
+    "scripts": {
+        "production": "node server",
+        "dev": "nodemon server"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "consolidate": "^0.16.0",
+        "express": "^4.17.1",
+        "express-handlebars": "^5.2.0",
+        "handlebars": "^4.7.6",
+        "moment": "^2.29.1",
+        "mongoose": "^5.10.10",
+        "socket.io": "^2.3.0"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.4"
+    }
+}

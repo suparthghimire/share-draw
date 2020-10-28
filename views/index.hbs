@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="crossorigin="anonymous"
+            />
+        <link rel="stylesheet" href="/css/index.css">
+        <title>Share Draw</title>
+    </head>
+
+    <body>
+        <header class="header">
+            <h1 class="title">
+                Shared Draw
+            </h1>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <a href="#" class="nav-item">Home</a>
+                    <a href="#" class="nav-item">Create</a>
+                    <a href="#" class="nav-item">Join</a>
+                    <a href="#" class="nav-item">About</a>
+                </ul>
+            </nav>
+        </header>
+        <section class="landing">
+            <div class="landing-info">
+                <div class="info-typography">
+                    <div class="landing-title-container">
+                        <h2 class="landing-title">
+                            Sharing Illustration has Never Been More Fun
+                        </h2>
+                    </div>
+                    <a class="btn-call-to-action" href="#">
+                        <p>
+                            Get Started
+                        </p>
+
+                    </a>
+                </div>
+                <div class="illustration">
+                    <img src="images/index-art.svg" alt="">
+                </div>
+            </div>
+
+        </section>
+        <main class="room-maker">
+            <h2 class="section-title">
+                Let's Draw
+            </h2>
+            <div class="room-forms">
+                <div class="create-room">
+                    <div class="room-content">
+                        <h3 class="form-title">
+                            Create A Room
+                        </h3>
+                        <form action="/drawPad" method="GET">
+                            <div class="form-group">
+                                <label for="uname" class="form-label">Your
+                                    Name</label>
+                                <span class="form-inputs">
+                                    <input type="text" name="uname"
+                                        class="form-control" id="uname"
+                                        required>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="room-id" class="form-label">Invite
+                                    others using this code:</label>
+                                <div class="join-room-group">
+                                    <span class="form-inputs">
+                                        <input type="text" class="form-control"
+                                            name="room" id="room-id" required>
+                                        <button class="copy-btn"
+                                            id="copy-room-id"><i class="fas
+                                                fa-copy"></i></button>
+                                    </span>
+                                    <button class="btn-form btn-dark"
+                                        id="generate-room-id"><span>Generate</span></button>
+                                </div>
+                            </div>
+                            <button class="btn-form btn-dark"><span>Create
+                                    Artboard</span></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="join-room">
+                    <div class="room-content">
+                        <h3 class="form-title green-title">
+                            Join A Room
+                        </h3>
+                        <form action="drawPad.html">
+                            <div class="form-group">
+                                <label for="username" class="form-label"
+                                    required>Your Name</label>
+                                <span class="form-inputs">
+                                    <input type="text" name="uname"
+                                        class="form-control">
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label for="username" class="form-label">Enter
+                                    Artboard Code</label>
+                                <span class="form-inputs">
+                                    <input type="text" name="room"
+                                        class="form-control" required>
+                                </span>
+                            </div>
+                            <button class="btn-form btn-green"><span>Join
+                                    Artboard</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <p class="footer-text">
+                Created by Suparth Narayan Ghimire &#169; - 2020
+            </p>
+            <div class="footer-btn-group">
+                <a class="btn-footer">
+                    <span><i class="fab fa-instagram"></i></span>
+                </a>
+                <a class="btn-footer">
+                    <span><i class="fab fa-github"></i></span>
+                </a>
+                <a class="btn-footer">
+                    <span><i class="fas fa-envelope"></i></span>
+                </a>
+            </div>
+        </footer>
+
+    </body>
+    <script src="/js/index.js"></script>
+
+</html>
