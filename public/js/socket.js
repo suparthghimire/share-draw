@@ -10,13 +10,13 @@ class UI {
     }, 4000);
   }
 
-  static createChat(message) {
+  static createChat(username, message) {
     const chatContainer = document.querySelector(".chat-list");
     const li = document.createElement("li");
     li.classList.add("chat-item");
     const h4 = document.createElement("h4");
     h4.classList.add("chat-username");
-    h4.innerText = "Suparth Narayan Ghimire";
+    h4.innerText = username;
     const p = document.createElement("p");
     p.classList.add("chat-text");
     p.innerText = message;
@@ -62,7 +62,7 @@ document.querySelector("#chat-form").addEventListener("submit", (e) => {
 });
 
 // on receiving chat message
-socket.on("chatMessage", (message) => {
-  UI.createChat(message);
+socket.on("chatMessage", ({ username, message }) => {
+  UI.createChat(username, message);
   console.log(message);
 });

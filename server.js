@@ -37,28 +37,29 @@ const {
   getAllUsers,
 } = require("./utils/user_helper");
 const formatMsg = require("./utils/chat_helper");
-const cons = require("consolidate");
+
 io.on("connection", (socket) => {
-  socket.on("joinUsers", (uname, room) => {
+  socket.on("joinUsers", ({ uname, room }) => {
     const user = userJoin(socket.id, uname, room);
     socket.join(user.room);
     console.log(formatMsg(user.username, "Abc"));
     socket.broadcast
       .to(user.room)
-      .emit("userRoomMsg", `${user.username.uname} has Joined`);
+      .emit("userRoomMsg", `${user.username} has Joined`);
   });
 
   console.log("User Connected");
 
   socket.on("chatMessage", (message) => {
     const user = getCurrentUser(socket.id);
-    io.to(user.room).emit("chatMessage", message);
+    const username = user.username;
+    io.to(user.room).emit("chatMessage", { username, message });
   });
 
   socket.on("disconnect", () => {
     const user = userLeave(socket.id);
     if (user) {
-      io.emit("userRoomMsg", `${user.username.uname} has Left`);
+      io.emit("userRoomMsg", `${user.username} has Left`);
     }
   });
 });
