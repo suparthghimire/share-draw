@@ -30,6 +30,28 @@ class UI {
   static removeEl(el) {
     el.remove();
   }
+  static renderAllUsers(users) {
+    document.querySelector(".users-list").innerHTML = "";
+    users.forEach((user) => {
+      let li = document.createElement("li");
+      li.classList.add("users-item");
+      let div = document.createElement("div");
+      div.classList.add("user-img-container");
+      let image = new Image();
+      image.src = "https://source.unsplash.com/random/50x50";
+      image.classList.add("user-img");
+
+      div.appendChild(image);
+
+      let p = document.createElement("p");
+      p.classList.add("user-name");
+      p.innerText = user.username;
+
+      li.appendChild(div);
+      li.appendChild(p);
+      document.querySelector(".users-list").appendChild(li);
+    });
+  }
 }
 
 // socket operation
@@ -65,4 +87,9 @@ document.querySelector("#chat-form").addEventListener("submit", (e) => {
 socket.on("chatMessage", ({ username, message }) => {
   UI.createChat(username, message);
   console.log(message);
+});
+
+// get all users
+socket.on("allUsers", ({ users }) => {
+  UI.renderAllUsers(users);
 });

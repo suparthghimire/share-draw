@@ -37,6 +37,7 @@ const {
   getAllUsers,
 } = require("./utils/user_helper");
 const formatMsg = require("./utils/chat_helper");
+const cons = require("consolidate");
 
 io.on("connection", (socket) => {
   socket.on("joinUsers", ({ uname, room }) => {
@@ -46,6 +47,7 @@ io.on("connection", (socket) => {
     socket.broadcast
       .to(user.room)
       .emit("userRoomMsg", `${user.username} has Joined`);
+    io.to(user.room).emit("allUsers", { users: getAllUsers(user.room) });
   });
 
   console.log("User Connected");
