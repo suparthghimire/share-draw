@@ -52,6 +52,21 @@ io.on("connection", (socket) => {
 
   console.log("User Connected");
 
+  socket.on("mousedown", ({ x, y }) => {
+    console.log(`Mouse Down on ${x}, ${y}`);
+    socket.broadcast.emit("mousedown", { x, y });
+  });
+
+  socket.on("pencilDraw", ({ x, y }) => {
+    console.log(`Mouse Move on ${x}, ${y}`);
+    socket.broadcast.emit("pencilDraw", { x, y });
+  });
+
+  socket.on("mouseup", ({ x, y }) => {
+    console.log(`Mouse Up on ${x}, ${y}`);
+    socket.broadcast.emit("mouseup", { x, y });
+  });
+
   socket.on("chatMessage", (message) => {
     const user = getCurrentUser(socket.id);
     const username = user.username;

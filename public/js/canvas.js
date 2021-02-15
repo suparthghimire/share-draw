@@ -1,10 +1,11 @@
+import runSocketDrawing from "./socket.js";
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
 canvas.height = canvas.parentElement.clientHeight;
 canvas.width = canvas.parentElement.clientWidth;
 
-// selectors
+const socket = io();
 
 const pencil = document.querySelector("#tool-pencil");
 const eraser = document.querySelector("#tool-eraser");
@@ -29,14 +30,17 @@ const add_size_btn = document.querySelector(".add-size");
 
 canvas.style.backgroundColor = "white";
 
+let xOffset = canvas.getBoundingClientRect().left;
+let yOffset = canvas.getBoundingClientRect().top;
+
 class UI {
   static change_brush_size(size) {
     if (size != "*") ctx.lineWidth = size;
     else ctx.lineWidth = brush_size_custom.value;
   }
-  static getCanvasCoordinates(e) {
-    const x = e.clientX - 153;
-    const y = e.clientY - 153;
+  static getCanvasCoordinates(eX, eY) {
+    const x = eX - xOffset;
+    const y = eY - yOffset;
     return { x, y };
   }
   static clearCanvas() {
@@ -52,30 +56,37 @@ class UI {
   static setSnapshot() {
     ctx.putImageData(this.currentSnap, 0, 0);
   }
-  static startPos(e) {
+  static startPos(x, y, source) {
     this.painting = true;
-    this.startMousePos = UI.getCanvasCoordinates(e);
-
+    this.startMousePos = UI.getCanvasCoordinates(x, y);
     UI.takeSnapshot();
+
+    if (source == "client") {
+      socket.emit("mousedown", { x, y });
+    }
   }
-  static endPos(e) {
+  static endPos(x, y, source) {
     this.painting = false;
-    this.position = UI.getCanvasCoordinates(e);
-    UI.draw(e);
+    this.position = UI.getCanvasCoordinates(x, y);
+    UI.draw(x, y, source);
     ctx.beginPath();
+
+    if (source == "client") {
+      socket.emit("mouseup", { x, y });
+    }
   }
 
-  static draw(e) {
+  static draw(eX, eY, source) {
     if (!this.painting) return;
 
     ctx.strokeStyle = document.querySelector("#tool-palette").value;
 
     if (pencil.checked) {
-      UI.drawPencil(e);
+      UI.drawPencil(eX, eY, source);
     } else if (eraser.checked) {
       ctx.clearRect(
-        e.clientX - 153,
-        e.clientY - 153,
+        e.clientX - xOffset,
+        e.clientY - yOffset,
         ctx.lineWidth,
         ctx.lineWidth
       );
@@ -85,28 +96,28 @@ class UI {
 
         let startPosition = this.startMousePos;
 
-        let endPosition = { x: e.clientX - 153, y: e.clientY - 153 };
+        let endPosition = { x: eX - xOffset, y: eY - yOffset };
 
         UI.drawLine(startPosition, endPosition);
       } else if (rectangle.checked) {
         UI.setSnapshot();
         let startPosition = this.startMousePos;
 
-        let endPosition = { x: e.clientX - 153, y: e.clientY - 153 };
+        let endPosition = { x: eX - xOffset, y: eY - yOffset };
 
         UI.drawRect(startPosition, endPosition);
       } else if (circle.checked) {
         UI.setSnapshot();
         let startPosition = this.startMousePos;
 
-        let endPosition = { x: e.clientX - 153, y: e.clientY - 153 };
+        let endPosition = { x: eX - xOffset, y: eY - yOffset };
 
         UI.drawCircle(startPosition, endPosition);
       } else if (triangle.checked) {
         UI.setSnapshot();
         let startPosition = this.startMousePos;
 
-        let endPosition = { x: e.clientX - 153, y: e.clientY - 153 };
+        let endPosition = { x: eX - xOffset, y: eY - yOffset };
 
         UI.drawTriangle(startPosition, endPosition);
       }
@@ -119,13 +130,17 @@ class UI {
     ctx.lineTo(endPosition.x, endPosition.y);
     ctx.stroke();
   }
-  static drawPencil(e) {
+  static drawPencil(x, y, source) {
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
 
-    ctx.lineTo(e.clientX - 153, e.clientY - 153);
-
+    let final_x = x - xOffset;
+    let final_y = y - yOffset;
+    ctx.lineTo(final_x, final_y);
     ctx.stroke();
+    if (source == "client") {
+      socket.emit("pencilDraw", { x, y });
+    }
   }
   static drawRect(startPosition, endPosition) {
     ctx.beginPath();
@@ -160,6 +175,22 @@ class UI {
     ctx.stroke();
   }
 }
+
+canvas.addEventListener("mousemove", (e) => {
+  let x = e.clientX;
+  let y = e.clientY;
+  UI.draw(x, y, "client");
+});
+canvas.addEventListener("mousedown", (e) => {
+  let x = e.clientX;
+  let y = e.clientY;
+  UI.startPos(x, y, "client");
+});
+canvas.addEventListener("mouseup", (e) => {
+  let x = e.clientX;
+  let y = e.clientY;
+  UI.endPos(x, y, "client");
+});
 
 class TextArea {
   constructor() {
@@ -501,10 +532,6 @@ class CodeSegment extends TextArea {
   }
 }
 
-canvas.addEventListener("mousemove", UI.draw);
-canvas.addEventListener("mousedown", UI.startPos);
-canvas.addEventListener("mouseup", UI.endPos);
-
 clearCanvas.addEventListener("click", UI.clearCanvas);
 canvasBg.addEventListener("change", UI.changeCanvasBg);
 font.addEventListener("click", (e) => {
@@ -567,3 +594,9 @@ add_size_btn.addEventListener("click", () => {
 
   UI.change_brush_size("*");
 });
+
+//socket recieve
+
+runSocketDrawing();
+
+export { UI, socket };
