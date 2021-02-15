@@ -600,3 +600,4 @@ add_size_btn.addEventListener("click", () => {
 runSocketDrawing();
 
 export { UI, socket };
+
